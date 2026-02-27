@@ -1,0 +1,49 @@
+.search-wrapper {
+  position: relative;
+  width: 400px;
+}
+
+.search-card {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: #777;
+}
+
+.value {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* DROPDOWN */
+
+.dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+
+  padding: 15px 0;
+  z-index: 9999;
+}
+
+.dropdown-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.dropdown-item:hover {
+  background: #f0f0f0;
+}
