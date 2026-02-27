@@ -148,3 +148,4 @@ EMAIL_HOST_USER = "yourgmail@gmail.com"
 EMAIL_HOST_PASSWORD = "your_app_password"
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+TEMPLATES[0]['DIRS'] = [BASE_DIR / "static/frontend"]
