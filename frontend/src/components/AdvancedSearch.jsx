@@ -19,18 +19,22 @@ function AdvancedSearch() {
   }, [])
 
   return (
-    <section className="relative z-10 mt-8 px-6">
+    <section className="relative z-10 mt-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto 
                       bg-white 
-                      rounded-2xl 
-                      p-6 
+                      rounded-3xl 
+                      p-5 sm:p-8
                       shadow-xl 
-                      border border-green-100">
+                      border border-green-100
+                      transition-all duration-500
+                      hover:shadow-2xl">
 
         {/* TABS */}
-        <div className="flex gap-8 mb-6 text-gray-700 font-medium text-sm">
+        <div className="flex gap-6 sm:gap-8 mb-6 
+                        text-gray-700 font-medium text-sm 
+                        overflow-x-auto scrollbar-hide">
           {["Tours with Flight", "Hotels", "Hot Deals"].map((item, i) => (
-            <label key={i} className="flex items-center gap-2 cursor-pointer">
+            <label key={i} className="flex items-center gap-2 cursor-pointer whitespace-nowrap">
               <input
                 type="radio"
                 name="type"
@@ -43,16 +47,16 @@ function AdvancedSearch() {
         </div>
 
         {/* FIRST ROW */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
 
-          {/* Departure City */}
-          <div className="relative" ref={dropdownRef}>
+          {/* Departure */}
+          <div className="relative col-span-1" ref={dropdownRef}>
             <div
               onClick={() => setOpenCity(!openCity)}
-              className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer
+              className="bg-[#F6F9F6] rounded-xl p-4 cursor-pointer
                          border border-green-100
-                         hover:border-green-300 hover:shadow-md
-                         transition-all duration-300"
+                         hover:border-green-400 hover:shadow-md
+                         transition-all duration-300 h-full"
             >
               <p className="text-[10px] text-gray-500 uppercase">
                 Departure
@@ -75,7 +79,7 @@ function AdvancedSearch() {
 
             {/* Dropdown */}
             <div
-              className={`absolute left-0 mt-2 w-full bg-white rounded-xl shadow-lg
+              className={`absolute left-0 mt-2 w-full bg-white rounded-xl shadow-xl
                           border border-green-100 overflow-hidden
                           transition-all duration-300 origin-top z-50
                           ${
@@ -91,7 +95,7 @@ function AdvancedSearch() {
                     setSelectedCity(city)
                     setOpenCity(false)
                   }}
-                  className="px-4 py-2 text-sm text-gray-700
+                  className="px-4 py-3 text-sm text-gray-700
                              hover:bg-green-50 hover:text-green-800
                              cursor-pointer transition"
                 >
@@ -110,10 +114,10 @@ function AdvancedSearch() {
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-[#F6F9F6] rounded-xl p-3
+              className="bg-[#F6F9F6] rounded-xl p-4
                          border border-green-100
-                         hover:border-green-300 hover:shadow-md
-                         transition-all duration-300"
+                         hover:border-green-400 hover:shadow-md
+                         transition-all duration-300 h-full"
             >
               <p className="text-[10px] text-gray-500 uppercase">
                 {item.label}
@@ -124,25 +128,28 @@ function AdvancedSearch() {
             </div>
           ))}
 
-          {/* Search Button */}
+          {/* SEARCH BUTTON */}
           <button
             className="bg-green-800 hover:bg-green-900
                        text-white rounded-xl
                        flex items-center justify-center
-                       text-xl transition-all duration-300
-                       hover:shadow-lg"
+                       text-xl font-semibold
+                       transition-all duration-300
+                       hover:shadow-xl hover:-translate-y-1
+                       h-full min-h-[60px]"
           >
             🔍
           </button>
-
         </div>
 
         {/* SECOND ROW */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
 
-          <div className="bg-[#F6F9F6] rounded-xl p-3
+          <div className="bg-[#F6F9F6] rounded-xl p-4
                           border border-green-100
-                          flex justify-between text-sm">
+                          flex justify-between text-sm
+                          hover:border-green-400 hover:shadow-md
+                          transition-all duration-300">
             <span>Hotel Class</span>
             <span className="text-yellow-600">★★★★★</span>
           </div>
@@ -150,17 +157,17 @@ function AdvancedSearch() {
           {["Resort", "Meals", "Rating", "Filters"].map((item, i) => (
             <div
               key={i}
-              className="bg-[#F6F9F6] rounded-xl p-3
+              className="bg-[#F6F9F6] rounded-xl p-4
                          border border-green-100
                          flex justify-between text-sm
-                         hover:border-green-300 transition"
+                         hover:border-green-400 hover:shadow-md
+                         transition-all duration-300"
             >
               <span>{item}</span>
               <span className="text-green-800">▼</span>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   )

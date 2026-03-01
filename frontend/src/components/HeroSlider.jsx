@@ -44,42 +44,69 @@ function HeroSlider() {
   }, [])
 
   return (
-    <section className="mt-6 px-5">
-      <div className="relative h-[460px] rounded-2xl overflow-hidden shadow-xl">
+    <section className="mt-6 px-3 sm:px-5">
+      <div className="
+        relative
+        h-[320px] sm:h-[380px] md:h-[460px]
+        rounded-2xl
+        overflow-hidden
+        shadow-xl
+      ">
 
-        {/* Background */}
+        {/* Background Image */}
         <div
           key={current}
           className="absolute inset-0 bg-cover bg-center transition-all duration-1000 scale-105"
           style={{ backgroundImage: `url(${slides[current].image})` }}
         />
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r 
+                        from-black/85 via-black/50 to-transparent" />
 
-        {/* Content */}
-        <div className="absolute bottom-14 left-14 text-white max-w-2xl">
+        {/* CONTENT */}
+        <div className="
+          absolute
+          bottom-6 sm:bottom-10 md:bottom-14
+          left-6 sm:left-10 md:left-14
+          right-6
+          text-white
+          max-w-xl
+        ">
 
           {/* TITLE */}
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+          <h1 className="
+            text-2xl sm:text-3xl md:text-5xl lg:text-6xl
+            font-extrabold
+            mb-4 sm:mb-6
+            leading-tight
+          ">
             {slides[current].title}
           </h1>
 
-          {/* DESCRIPTION + ICON */}
-          <div className="flex items-start gap-4">
-            
-            {/* Icon */}
-            <div className="w-12 h-12 bg-green-600/90 rounded-full 
-                            flex items-center justify-center text-2xl">
+          {/* DESCRIPTION */}
+          <div className="flex items-start gap-3 sm:gap-4">
+
+            <div className="
+              w-10 h-10 sm:w-12 sm:h-12
+              bg-green-600/90
+              rounded-full
+              flex items-center justify-center
+              text-xl sm:text-2xl
+              flex-shrink-0
+            ">
               📍
             </div>
 
-            <p className="text-lg md:text-2xl text-gray-200 leading-relaxed">
+            <p className="
+              text-sm sm:text-lg md:text-xl
+              text-gray-200
+              leading-relaxed
+            ">
               {slides[current].description}
             </p>
 
           </div>
-
         </div>
 
       </div>

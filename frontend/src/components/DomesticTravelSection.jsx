@@ -31,53 +31,65 @@ function DomesticTravelSection() {
   ]
 
   return (
-    <section className="px-6 mt-32 mb-24"> {/* 👈 pastga tushirdik */}
+    <section className="px-4 sm:px-6 lg:px-8 mt-24 sm:mt-32 mb-24">
       <div className="max-w-7xl mx-auto">
 
-        {/* Title */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-14 text-gray-900 text-center">
-          Ichki turizm yo‘nalishlari
-        </h2>
+        {/* PREMIUM TITLE */}
+        <div className="text-center mb-14">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            Ichki turizm yo‘nalishlari
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-emerald-600 mx-auto mt-4 rounded-full"></div>
+        </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+        {/* GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
 
           {categories.map((item, index) => (
             <div
               key={index}
               onClick={() => navigate("/tours")}
               className="relative group overflow-hidden rounded-3xl cursor-pointer
-                         shadow-lg hover:shadow-2xl
-                         transition-all duration-500 hover:-translate-y-2"
+                         shadow-md hover:shadow-2xl
+                         transition-all duration-500
+                         hover:-translate-y-3"
             >
-              {/* Image */}
+
+              {/* IMAGE */}
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[320px] object-cover 
-                           transition-transform duration-700 
+                className="w-full h-[260px] sm:h-[300px] lg:h-[320px]
+                           object-cover
+                           transition-transform duration-700
                            group-hover:scale-110"
               />
 
-              {/* Premium overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t 
-                              from-black/80 via-black/30 to-transparent 
-                              opacity-90 group-hover:opacity-100 
-                              transition duration-500 pointer-events-none">
+              {/* OVERLAY */}
+              <div className="absolute inset-0 bg-gradient-to-t
+                              from-black/85 via-black/40 to-transparent
+                              transition-opacity duration-500
+                              group-hover:opacity-100">
               </div>
 
-              {/* Text */}
-              <div className="absolute bottom-8 left-8 text-white 
-                              text-xl font-semibold tracking-wide 
-                              pointer-events-none">
-                {item.title}
+              {/* TEXT */}
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-lg sm:text-xl font-semibold tracking-wide">
+                  {item.title}
+                </h3>
               </div>
 
-              {/* Subtle glow effect */}
-              <div className="absolute inset-0 rounded-3xl 
-                              ring-1 ring-white/10 
-                              group-hover:ring-green-400/40 
-                              transition duration-500 pointer-events-none">
+              {/* PREMIUM GLOW BORDER */}
+              <div className="absolute inset-0 rounded-3xl
+                              ring-1 ring-white/10
+                              group-hover:ring-2 group-hover:ring-green-400/50
+                              transition duration-500">
+              </div>
+
+              {/* HOVER LIGHT EFFECT */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100
+                              bg-gradient-to-tr from-white/10 via-transparent to-transparent
+                              transition duration-700">
               </div>
 
             </div>

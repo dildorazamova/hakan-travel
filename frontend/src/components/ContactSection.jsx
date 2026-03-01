@@ -22,52 +22,44 @@ function ContactSection() {
         setLoading(false)
         setAlert("success")
         form.current.reset()
-
-        setTimeout(() => {
-          setAlert(null)
-        }, 3000)
+        setTimeout(() => setAlert(null), 3000)
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
         setLoading(false)
         setAlert("error")
-
-        setTimeout(() => {
-          setAlert(null)
-        }, 3000)
+        setTimeout(() => setAlert(null), 3000)
       })
   }
 
   return (
     <>
-      {/* 🔥 TOP ALERT */}
-      {alert === "success" && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 
-                        bg-green-500 text-white px-6 py-3 
-                        rounded-xl shadow-lg z-50 animate-bounce">
-          ✅ Ma’lumot muvaffaqiyatli yuborildi!
+      {/* ALERT */}
+      {alert && (
+        <div className={`fixed top-6 left-1/2 -translate-x-1/2 
+                         px-6 py-3 rounded-xl shadow-xl z-50
+                         text-white transition-all duration-300
+                         ${alert === "success" ? "bg-green-500" : "bg-red-500"}`}>
+          {alert === "success"
+            ? "✅ Ma’lumot muvaffaqiyatli yuborildi!"
+            : "❌ Xatolik yuz berdi!"}
         </div>
       )}
 
-      {alert === "error" && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 
-                        bg-red-500 text-white px-6 py-3 
-                        rounded-xl shadow-lg z-50 animate-bounce">
-          ❌ Xatolik yuz berdi!
-        </div>
-      )}
+      <section className="mt-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto 
+                        bg-gradient-to-br from-gray-50 to-gray-100
+                        rounded-3xl p-6 sm:p-10 
+                        shadow-xl border border-gray-200
+                        transition-all duration-500 hover:shadow-2xl">
 
-      <section className="px-6 mt-24">
-        <div className="max-w-7xl mx-auto bg-gray-100 rounded-3xl p-10 border">
-
-          <h2 className="text-3xl font-bold mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-10 text-center">
             Biz bilan bog‘laning
           </h2>
 
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="grid grid-cols-1 md:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
 
             {/* NAME */}
@@ -76,7 +68,9 @@ function ContactSection() {
               name="user_name"
               placeholder="Ismingiz"
               required
-              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+              className="w-full border rounded-2xl px-5 py-4 
+                         focus:ring-2 focus:ring-indigo-500 
+                         outline-none transition"
             />
 
             {/* PHONE */}
@@ -85,7 +79,9 @@ function ContactSection() {
               name="user_phone"
               placeholder="Telefon"
               required
-              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+              className="w-full border rounded-2xl px-5 py-4 
+                         focus:ring-2 focus:ring-indigo-500 
+                         outline-none transition"
             />
 
             {/* EMAIL */}
@@ -94,30 +90,34 @@ function ContactSection() {
               name="user_email"
               placeholder="Email"
               required
-              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500 outline-none"
+              className="md:col-span-2 w-full border rounded-2xl px-5 py-4 
+                         focus:ring-2 focus:ring-indigo-500 
+                         outline-none transition"
+            />
+
+            {/* MESSAGE */}
+            <textarea
+              name="message"
+              placeholder="Savolingiz yoki xabaringizni yozing..."
+              required
+              className="md:col-span-2 w-full border rounded-2xl px-5 py-4 
+                         focus:ring-2 focus:ring-indigo-500 
+                         outline-none resize-none h-36 transition"
             />
 
             {/* BUTTON */}
             <button
               type="submit"
               disabled={loading}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 
-                         text-white rounded-full px-6 py-3
-                         hover:scale-105 transition
+              className="md:col-span-2 
+                         bg-gradient-to-r from-indigo-600 to-purple-600
+                         text-white rounded-2xl py-4 text-lg font-semibold
+                         transition-all duration-300
+                         hover:shadow-xl hover:-translate-y-1
                          disabled:opacity-50"
             >
               {loading ? "Yuborilmoqda..." : "Yuborish"}
             </button>
-
-            {/* MESSAGE TEXTAREA */}
-            <textarea
-              name="message"
-              placeholder="Savolingiz yoki xabaringizni yozing..."
-              required
-              className="md:col-span-4 border rounded-3xl px-6 py-4 
-                         focus:ring-2 focus:ring-indigo-500 
-                         outline-none resize-none h-32"
-            />
 
           </form>
         </div>
