@@ -4,7 +4,7 @@ import emailjs from "@emailjs/browser"
 function ContactSection() {
   const form = useRef()
   const [loading, setLoading] = useState(false)
-  const [alert, setAlert] = useState(null) // success | error | null
+  const [alert, setAlert] = useState(null)
 
   const sendEmail = (e) => {
     e.preventDefault()
@@ -70,30 +70,34 @@ function ContactSection() {
             className="grid grid-cols-1 md:grid-cols-4 gap-6"
           >
 
+            {/* NAME */}
             <input
               type="text"
               name="user_name"
               placeholder="Ismingiz"
               required
-              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500"
+              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500 outline-none"
             />
 
+            {/* PHONE */}
             <input
               type="text"
               name="user_phone"
               placeholder="Telefon"
               required
-              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500"
+              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500 outline-none"
             />
 
+            {/* EMAIL */}
             <input
               type="email"
               name="user_email"
               placeholder="Email"
               required
-              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500"
+              className="border rounded-full px-5 py-3 focus:ring-2 focus:ring-indigo-500 outline-none"
             />
 
+            {/* BUTTON */}
             <button
               type="submit"
               disabled={loading}
@@ -104,6 +108,16 @@ function ContactSection() {
             >
               {loading ? "Yuborilmoqda..." : "Yuborish"}
             </button>
+
+            {/* MESSAGE TEXTAREA */}
+            <textarea
+              name="message"
+              placeholder="Savolingiz yoki xabaringizni yozing..."
+              required
+              className="md:col-span-4 border rounded-3xl px-6 py-4 
+                         focus:ring-2 focus:ring-indigo-500 
+                         outline-none resize-none h-32"
+            />
 
           </form>
         </div>

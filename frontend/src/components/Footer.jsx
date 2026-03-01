@@ -28,7 +28,7 @@ function Footer() {
             {/* Brand */}
             <div>
               <h2 className="text-3xl font-bold text-green-900 mb-6 tracking-wide">
-                Hakan Travel
+                Hokan Travel
               </h2>
               <p className="text-gray-600 text-sm leading-relaxed">
                 Biz bilan sayohat qilish – bu yangi taassurotlar, qulaylik va

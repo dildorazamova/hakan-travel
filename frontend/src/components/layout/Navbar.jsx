@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import GoogleTranslate from "../GoogleTranslate"
 import LanguageSwitcher from "../LanguageSwitcher"
+import { FaTelegramPlane } from "react-icons/fa"
+
 
 function Header() {
   return (
@@ -22,7 +24,7 @@ function Header() {
   to="/about"
   className="hover:text-green-600 transition"
 >
-  About us
+  Sayt Haqida
 </Link>
         </nav>
 
@@ -41,11 +43,16 @@ function Header() {
   <LanguageSwitcher />
 </div>
 
-          <div className="w-10 h-10 bg-green-600 text-white 
-                          rounded-full flex items-center justify-center
-                          hover:bg-green-700 transition cursor-pointer">
-            ✈
-          </div>
+         <a
+  href="https://t.me/hokantravel"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="w-10 h-10 bg-green-600 text-white 
+             rounded-full flex items-center justify-center
+             hover:bg-green-700 transition cursor-pointer"
+>
+  <FaTelegramPlane size={18} />
+</a>
         </div>
 
       </div>

@@ -1,4 +1,5 @@
 import React from "react"
+import aboutImage from "../assets/hokan.jpg"
 
 function AboutPage() {
   return (
@@ -24,7 +25,7 @@ function AboutPage() {
     leading-relaxed
   ">
     <span className="font-semibold text-gray-800">
-      Hakan Travel
+      Hokan Travel
     </span>{" "}
     — bu yangi avlod milliy turoperatori bo‘lib, 2024-yilda tashkil etilgan va
     allaqachon minglab sayohatchilar uchun ishonchli hamkor sifatida tanilgan.
@@ -45,7 +46,7 @@ function AboutPage() {
       {/* TEAM IMAGE */}
       <div className="rounded-3xl overflow-hidden shadow-xl mb-16 mt-4">
         <img
-          src="https://i.pinimg.com/1200x/ba/b1/f6/bab1f62d12ea33d37b49c43fbffa2752.jpg"
+          src={aboutImage}
           alt="Our team"
           className="w-full h-[500px] object-cover"
         />
@@ -92,7 +93,7 @@ function AboutPage() {
 
         <p>
           <span className="font-semibold text-gray-800">
-            Centrum Holidays
+            Hokan Travel
           </span>{" "}
           — bu ishonchlilik, xizmat ko‘rsatish sifati va sayohatga bo‘lgan muhabbatdir.
         </p>
