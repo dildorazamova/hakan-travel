@@ -18,16 +18,21 @@ function ToursPage() {
         }
         return res.json()
       })
-      .then(data => setTours(data))
+      .then(data => {
+        // 🔥 agar DRF pagination bo‘lsa
+        const toursData = data.results ? data.results : data
+        setTours(toursData)
+      })
       .catch(err => setError(err.message))
   }, [])
 
-  if (error)
+  if (error) {
     return (
       <div className="pt-32 text-center text-red-500">
         {error}
       </div>
     )
+  }
 
   const totalPages = Math.ceil(tours.length / toursPerPage)
   const start = (currentPage - 1) * toursPerPage
@@ -36,16 +41,28 @@ function ToursPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 pt-32 pb-24">
 
-      {/* Cards */}
+      {/* TITLE */}
+      <h1 className="text-3xl font-bold mb-10">
+        Barcha turlar
+      </h1>
+
+      {/* CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {currentTours.map(tour => (
-          <TourCard key={tour.id} tour={tour} />
-        ))}
+
+        {currentTours.length > 0 ? (
+          currentTours.map(tour => (
+            <TourCard key={tour.id} tour={tour} />
+          ))
+        ) : (
+          <p className="text-gray-500">Turlar topilmadi</p>
+        )}
+
       </div>
 
-      {/* Pagination */}
+      {/* PAGINATION */}
       {totalPages > 1 && (
         <div className="flex justify-center mt-12 gap-3">
+
           {[...Array(totalPages)].map((_, i) => (
             <button
               key={i}
@@ -59,6 +76,7 @@ function ToursPage() {
               {i + 1}
             </button>
           ))}
+
         </div>
       )}
 

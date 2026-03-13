@@ -110,6 +110,7 @@ class AdminStatsAPIView(APIView):
 
         return Response(data)
     
+    
 class SendBookingEmail(APIView):
 
     def post(self, request):
