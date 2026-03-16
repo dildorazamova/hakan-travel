@@ -10,6 +10,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('tours.urls')),
 
     # API
     path('api/tours/', include('tours.urls')),
