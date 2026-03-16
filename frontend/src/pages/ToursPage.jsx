@@ -11,7 +11,7 @@ function ToursPage() {
 
   useEffect(() => {
 
-    fetch("/api/tours/tours/")
+    fetch("/api/tours/")
       .then(res => {
         if (!res.ok) {
           throw new Error("Server error")
