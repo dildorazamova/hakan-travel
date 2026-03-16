@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
 import TourCard from "../components/TourCard"
 
-const API = import.meta.env.VITE_API_URL
-
 function ToursPage() {
+
   const [tours, setTours] = useState([])
   const [error, setError] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
@@ -11,7 +10,8 @@ function ToursPage() {
   const toursPerPage = 8
 
   useEffect(() => {
-    fetch(`${API}/api/tours/tours/`)
+
+    fetch("/api/tours/tours/")
       .then(res => {
         if (!res.ok) {
           throw new Error("Server error")
@@ -19,11 +19,13 @@ function ToursPage() {
         return res.json()
       })
       .then(data => {
-        // 🔥 agar DRF pagination bo‘lsa
+
         const toursData = data.results ? data.results : data
         setTours(toursData)
+
       })
       .catch(err => setError(err.message))
+
   }, [])
 
   if (error) {
@@ -41,12 +43,10 @@ function ToursPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 pt-32 pb-24">
 
-      {/* TITLE */}
       <h1 className="text-3xl font-bold mb-10">
         Barcha turlar
       </h1>
 
-      {/* CARDS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
         {currentTours.length > 0 ? (
@@ -59,7 +59,6 @@ function ToursPage() {
 
       </div>
 
-      {/* PAGINATION */}
       {totalPages > 1 && (
         <div className="flex justify-center mt-12 gap-3">
 
