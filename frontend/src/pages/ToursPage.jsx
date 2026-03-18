@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import TourCard from "../components/TourCard"
+import BASE_URL from "../api"
 
 function ToursPage() {
 
@@ -11,7 +12,7 @@ function ToursPage() {
 
   useEffect(() => {
 
-    fetch("/api/tours/")
+    fetch(`${BASE_URL}/api/tours/`)
       .then(res => {
         if (!res.ok) {
           throw new Error("Server error")
