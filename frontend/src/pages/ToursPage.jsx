@@ -12,7 +12,7 @@ function ToursPage() {
 
   useEffect(() => {
 
-    fetch(`${BASE_URL}/api/tours/`)
+    fetch(fetch(`${import.meta.env.VITE_API_URL}/api/tours/`))
       .then(res => {
         if (!res.ok) {
           throw new Error("Server error")
