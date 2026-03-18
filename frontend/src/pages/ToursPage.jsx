@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import TourCard from "../components/TourCard"
-import BASE_URL from "../api"
+import { useLocation } from "react-router-dom"
 
 function ToursPage() {
 
@@ -10,24 +10,40 @@ function ToursPage() {
 
   const toursPerPage = 8
 
+  const location = useLocation()
+
   useEffect(() => {
 
-    fetch(fetch(`${import.meta.env.VITE_API_URL}/api/tours/`))
+    const params = new URLSearchParams(location.search)
+    const city = params.get("city")
+    const country = params.get("country")
+
+    let url = `${import.meta.env.VITE_API_URL}/api/tours/`
+
+    const query = []
+
+    if (city && city !== "null") query.push(`city=${city}`)
+    if (country && country !== "null") query.push(`country=${country}`)
+
+    if (query.length > 0) {
+      url += "?" + query.join("&")
+    }
+
+    fetch(url)
       .then(res => {
-        if (!res.ok) {
-          throw new Error("Server error")
-        }
+        if (!res.ok) throw new Error("Server error")
         return res.json()
       })
       .then(data => {
 
         const toursData = data.results ? data.results : data
         setTours(toursData)
+        setCurrentPage(1) // 🔥 page reset
 
       })
       .catch(err => setError(err.message))
 
-  }, [])
+  }, [location.search])
 
   if (error) {
     return (
@@ -42,6 +58,7 @@ function ToursPage() {
   const currentTours = tours.slice(start, start + toursPerPage)
 
   return (
+
     <div className="max-w-7xl mx-auto px-6 pt-32 pb-24">
 
       <h1 className="text-3xl font-bold mb-10">
@@ -55,13 +72,16 @@ function ToursPage() {
             <TourCard key={tour.id} tour={tour} />
           ))
         ) : (
-          <p className="text-gray-500">Turlar topilmadi</p>
+          <p className="text-gray-500">
+            Turlar topilmadi
+          </p>
         )}
 
       </div>
 
+      {/* PAGINATION */}
       {totalPages > 1 && (
-        <div className="flex justify-center mt-12 gap-3">
+        <div className="flex justify-center mt-12 gap-3 flex-wrap">
 
           {[...Array(totalPages)].map((_, i) => (
             <button
