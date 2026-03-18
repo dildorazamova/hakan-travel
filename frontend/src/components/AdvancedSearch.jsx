@@ -11,7 +11,7 @@ function AdvancedSearch() {
 
   const navigate = useNavigate()
 
-  // ✅ CITY
+  // CITY
   const [openCity, setOpenCity] = useState(false)
   const [selectedCity, setSelectedCity] = useState("Tashkent")
   const [selectedCityId, setSelectedCityId] = useState(null)
@@ -48,6 +48,21 @@ function AdvancedSearch() {
 
   }, [])
 
+  // 🔥 SEARCH FUNCTION (ENG MUHIM)
+  const handleSearch = () => {
+    let params = new URLSearchParams()
+
+    if (selectedCityId) {
+      params.append("city", selectedCityId)
+    }
+
+    if (selectedCountryId) {
+      params.append("country", selectedCountryId)
+    }
+
+    navigate(`/tours?${params.toString()}`)
+  }
+
   return (
 
     <section className="relative z-10 mt-8 px-4 sm:px-6 lg:px-8">
@@ -55,7 +70,7 @@ function AdvancedSearch() {
       <div className="max-w-7xl mx-auto bg-white rounded-3xl p-6 shadow-xl border border-green-100">
 
         {/* TABS */}
-        <div className="flex gap-6 mb-6 text-gray-700 font-medium text-sm">
+        <div className="flex gap-6 mb-6 text-gray-700 font-medium text-sm flex-wrap">
           {["Tours with Flight","Hotels","Hot Deals"].map((item,i)=>(
             <label key={i} className="flex items-center gap-2 cursor-pointer">
               <input type="radio" name="type" defaultChecked={i===0} className="accent-green-800" />
@@ -64,78 +79,54 @@ function AdvancedSearch() {
           ))}
         </div>
 
-        {/* SEARCH ROW */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+        {/* SEARCH GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
 
           {/* CITY */}
-          <div>
-            <div
-              onClick={()=>setOpenCity(true)}
-              className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400"
-            >
-              <p className="text-xs text-gray-500 uppercase">Departure</p>
-
-              <div className="flex justify-between mt-1">
-                <p className="font-semibold">{selectedCity}</p>
-                <span>▼</span>
-              </div>
+          <div onClick={()=>setOpenCity(true)}
+            className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400">
+            <p className="text-xs text-gray-500 uppercase">Departure</p>
+            <div className="flex justify-between mt-1">
+              <p className="font-semibold">{selectedCity}</p>
+              <span>▼</span>
             </div>
           </div>
 
           {/* COUNTRY */}
-          <div
-            onClick={()=>setOpenCountry(true)}
-            className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400"
-          >
+          <div onClick={()=>setOpenCountry(true)}
+            className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400">
             <p className="text-xs text-gray-500 uppercase">Country</p>
             <p className="font-semibold">{selectedCountry}</p>
           </div>
 
           {/* DATES */}
-          <div
-            onClick={()=>setOpenDates(true)}
-            className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400"
-          >
+          <div onClick={()=>setOpenDates(true)}
+            className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400">
             <p className="text-xs text-gray-500 uppercase">Dates</p>
             <p className="font-semibold">{selectedDates}</p>
           </div>
 
           {/* NIGHTS */}
-          <div
-            onClick={()=>setOpenNights(true)}
-            className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400"
-          >
+          <div onClick={()=>setOpenNights(true)}
+            className="bg-[#F6F9F6] rounded-xl p-3 cursor-pointer border border-green-100 hover:border-green-400">
             <p className="text-xs text-gray-500 uppercase">Nights</p>
             <p className="font-semibold">{selectedNights}</p>
           </div>
 
-          {/* SEARCH BUTTON */}
-          <button
-            onClick={() => {
-              navigate(`/tours?city=${selectedCityId}&country=${selectedCountryId}`)
-            }}
-            className="bg-green-800 hover:bg-green-900 text-white rounded-xl flex items-center justify-center text-xl font-semibold"
-          >
-            🔍
-          </button>
-
         </div>
 
         {/* FILTER ROW */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
 
           {/* TOURISTS */}
-          <div
-            onClick={()=>setOpenTourists(true)}
-            className="bg-[#F6F9F6] rounded-xl p-4 flex justify-between items-center border border-green-100 cursor-pointer hover:border-green-400"
-          >
+          <div onClick={()=>setOpenTourists(true)}
+            className="bg-[#F6F9F6] rounded-xl p-4 flex justify-between items-center border border-green-100 cursor-pointer hover:border-green-400">
             <span className="font-semibold">Tourists</span>
             <span>{selectedTourists}</span>
           </div>
 
           {/* HOTEL CLASS */}
           <div className="bg-[#F6F9F6] rounded-xl p-4 flex items-center justify-between border border-green-100">
-
             <span className="font-semibold">Hotel Class</span>
 
             <div className="flex gap-1 text-2xl">
@@ -151,10 +142,17 @@ function AdvancedSearch() {
                 </span>
               ))}
             </div>
-
           </div>
 
         </div>
+
+        {/* 🔥 SEARCH BUTTON (OXIRIDA) */}
+        <button
+          onClick={handleSearch}
+          className="w-full mt-6 bg-green-800 hover:bg-green-900 text-white rounded-xl py-4 text-lg font-semibold transition"
+        >
+          🔍 Search Tours
+        </button>
 
       </div>
 
