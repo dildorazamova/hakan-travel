@@ -3,18 +3,36 @@ import { useEffect, useState } from "react"
 function CityModal({ open, onClose, onSelect }) {
 
   const [cities, setCities] = useState([])
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
 
-    if (open) {
-      fetch("http://localhost:8000/api/cities/")
-        .then(res => res.json())
-        .then(data => {
-          console.log("CITIES:", data) // 🔥 DEBUG
-          setCities(data)
-        })
-        .catch(err => console.error(err))
-    }
+    if (!open) return
+
+    let url = `${import.meta.env.VITE_API_URL}/api/cities/`
+
+    setLoading(true)
+    setError(null)
+
+    fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error("Server error")
+        return res.json()
+      })
+      .then(data => {
+
+        const citiesData = data.results ? data.results : data
+        setCities(citiesData)
+
+      })
+      .catch(err => {
+        console.error(err)
+        setError("Failed to load cities")
+      })
+      .finally(() => {
+        setLoading(false)
+      })
 
   }, [open])
 
@@ -32,12 +50,23 @@ function CityModal({ open, onClose, onSelect }) {
 
         <div className="space-y-3">
 
-          {cities.length === 0 && (
+          {/* LOADING */}
+          {loading && (
+            <p className="text-gray-400">Loading...</p>
+          )}
+
+          {/* ERROR */}
+          {error && (
+            <p className="text-red-500">{error}</p>
+          )}
+
+          {/* EMPTY */}
+          {!loading && !error && cities.length === 0 && (
             <p className="text-gray-400">No cities found</p>
           )}
 
+          {/* LIST */}
           {cities.map((city) => (
-
             <div
               key={city.id}
               onClick={() => {
@@ -48,7 +77,6 @@ function CityModal({ open, onClose, onSelect }) {
             >
               {city.name}
             </div>
-
           ))}
 
         </div>
