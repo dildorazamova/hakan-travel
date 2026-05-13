@@ -18,7 +18,7 @@ function ToursPage() {
     const city = params.get("city")
     const country = params.get("country")
 
-    let url = `${import.meta.env.VITE_API_URL}/api/tours/`
+    let url = `/api/tours/`
 
     const query = []
 

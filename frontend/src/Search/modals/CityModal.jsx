@@ -10,7 +10,7 @@ function CityModal({ open, onClose, onSelect }) {
 
     if (!open) return
 
-    let url = `${import.meta.env.VITE_API_URL}/api/cities/`
+    let url = `/api/cities/`
 
     setLoading(true)
     setError(null)
