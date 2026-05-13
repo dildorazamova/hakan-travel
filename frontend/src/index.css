@@ -2,14 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
+  background: #f1f5f9;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
 
-  background: #b4d0d9;
-background: linear-gradient(90deg,rgba(180, 208, 217, 1) 0%, rgba(0, 158, 66, 0.3) 45%, rgba(232, 228, 209, 1) 100%);
-
-  background-attachment: fixed;
+html {
+  scroll-behavior: smooth;
 }
 
 .goog-te-banner-frame {
@@ -27,3 +32,48 @@ background: linear-gradient(90deg,rgba(180, 208, 217, 1) 0%, rgba(0, 158, 66, 0.
 body {
   top: 0px !important;
 }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-fade-in-left {
+  opacity: 0;
+  animation: fadeInLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(1.08); }
+  to   { opacity: 1; transform: scale(1.04); }
+}
+.animate-zoom-in {
+  animation: zoomIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in {
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes progressFill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+.animate-progress {
+  animation: progressFill linear forwards;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

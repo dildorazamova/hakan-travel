@@ -1,100 +1,114 @@
 import { useNavigate } from "react-router-dom"
+import { FaArrowRight } from "react-icons/fa"
 import samarkandImg from "../assets/samarqand.png"
 import bukharaImg from "../assets/buxoro.png"
 import natureImg from "../assets/tabiat.png"
 
-function PromoSection() {
-  const navigate = useNavigate()
-
+function PromoCard({ image, title, subtitle, large, onClick }) {
   return (
-    <section className="px-4 sm:px-6 lg:px-8 mt-16 sm:mt-20 relative">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+    <div
+      onClick={onClick}
+      className={`relative group overflow-hidden rounded-2xl cursor-pointer
+                  shadow-sm hover:shadow-xl transition-all duration-500
+                  ${large ? "lg:row-span-2" : ""}`}
+    >
+      <img
+        src={image}
+        alt={title}
+        className={`w-full object-cover transition-transform duration-700 group-hover:scale-105
+                    ${large ? "h-[280px] sm:h-[340px] lg:h-full lg:min-h-[420px]" : "h-[180px] sm:h-[200px]"}`}
+      />
 
-        {/* LEFT BIG CARD */}
-        <div
-          onClick={() => navigate("/tours")}
-          className="lg:col-span-2 relative group overflow-hidden rounded-3xl cursor-pointer
-                     shadow-lg hover:shadow-2xl
-                     transition-all duration-500 hover:-translate-y-2"
-        >
-          <img
-            src={samarkandImg}
-            alt="Samarqand"
-            className="w-full h-[300px] sm:h-[380px] lg:h-[450px]
-                       object-cover transition duration-700 group-hover:scale-110"
-          />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
 
-          <div className="absolute inset-0 bg-gradient-to-t
-                          from-black/80 via-black/30 to-transparent" />
+      {/* Hover overlay */}
+      <div className="absolute inset-0 bg-green-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-          <div className="absolute bottom-6 sm:bottom-10 left-6 sm:left-10 text-white">
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
-              Samarqand
-            </h2>
-
-            <div className="bg-green-600 px-4 sm:px-6 py-2 sm:py-3 
-                            rounded-full inline-block 
-                            text-sm sm:text-lg font-medium 
-                            shadow-xl
-                            group-hover:scale-105
-                            transition">
-              Tarix va madaniyat sayohati
-            </div>
+      <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+        <p className="text-green-300 text-xs font-semibold uppercase tracking-widest mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {subtitle}
+        </p>
+        <div className="flex items-end justify-between">
+          <h3 className={`text-white font-bold leading-tight ${large ? "text-2xl sm:text-3xl" : "text-lg sm:text-xl"}`}>
+            {title}
+          </h3>
+          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center
+                          opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0
+                          transition-all duration-300 flex-shrink-0 ml-3">
+            <FaArrowRight size={12} className="text-white" />
           </div>
-        </div>
-
-        {/* RIGHT SIDE */}
-        <div className="flex flex-col gap-6 lg:gap-8">
-
-          {/* TOP RIGHT */}
-          <div
-            onClick={() => navigate("/tours")}
-            className="relative group overflow-hidden rounded-3xl cursor-pointer
-                       shadow-md hover:shadow-2xl
-                       transition-all duration-500 hover:-translate-y-2"
-          >
-            <img
-              src={bukharaImg}
-              alt="Buxoro"
-              className="w-full h-[200px] sm:h-[220px]
-                         object-cover transition duration-700 group-hover:scale-110"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-
-            <div className="absolute bottom-5 left-5 text-white text-lg sm:text-2xl font-semibold">
-              Buxoro tarixiy shahri
-            </div>
-          </div>
-
-          {/* BOTTOM RIGHT */}
-          <div
-            onClick={() => navigate("/tours")}
-            className="relative group overflow-hidden rounded-3xl cursor-pointer
-                       shadow-md hover:shadow-2xl
-                       transition-all duration-500 hover:-translate-y-2"
-          >
-            <img
-              src={natureImg}
-              alt="Nature"
-              className="w-full h-[200px] sm:h-[220px]
-                         object-cover transition duration-700 group-hover:scale-110"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-
-            <div className="absolute bottom-5 left-5 text-white text-lg sm:text-2xl font-semibold">
-              O‘zbekiston milliy sayohatlari
-            </div>
-          </div>
-
         </div>
       </div>
+    </div>
+  )
+}
 
-      {/* Decorative plane (responsive) */}
-      <div className="hidden lg:block absolute -bottom-12 left-10 
-                      text-green-500 text-5xl rotate-12 opacity-60">
-        ✈
+function PromoSection() {
+  const navigate = useNavigate()
+  const go = () => navigate("/tours")
+
+  return (
+    <section className="px-4 sm:px-6 lg:px-8 mb-20">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Section header */}
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <p className="text-green-600 text-sm font-semibold uppercase tracking-wider mb-2">
+              Mashhur yo'nalishlar
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              O'zbekistonning go'zal shaharlari
+            </h2>
+          </div>
+          <button
+            onClick={go}
+            className="hidden sm:flex items-center gap-2 text-sm text-green-600 font-semibold
+                       hover:text-green-700 transition-colors"
+          >
+            Barchasini ko'rish
+            <FaArrowRight size={13} />
+          </button>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-4">
+
+          <div className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
+            <PromoCard
+              image={samarkandImg}
+              title="Samarqand"
+              subtitle="Tarix va madaniyat"
+              large
+              onClick={go}
+            />
+          </div>
+
+          <PromoCard
+            image={bukharaImg}
+            title="Buxoro tarixiy shahri"
+            subtitle="Qadimiy shahar"
+            onClick={go}
+          />
+
+          <PromoCard
+            image={natureImg}
+            title="O'zbekiston milliy sayohatlari"
+            subtitle="Tabiat va dam olish"
+            onClick={go}
+          />
+        </div>
+
+        {/* Mobile "see all" button */}
+        <button
+          onClick={go}
+          className="sm:hidden w-full mt-4 flex items-center justify-center gap-2
+                     text-sm text-green-600 font-semibold border border-green-200
+                     hover:bg-green-50 rounded-xl py-3 transition"
+        >
+          Barchasini ko'rish
+          <FaArrowRight size={13} />
+        </button>
       </div>
     </section>
   )

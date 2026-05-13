@@ -16,7 +16,7 @@ import GoogleTranslate from "./components/GoogleTranslate"
 
 function HomePage() {
   return (
-    <div className="pt-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div>
       <HeroSlider />
       <AdvancedSearch />
       <PromoSection />
@@ -41,31 +41,23 @@ function App() {
 
       <Footer />
 
-      {/* ✅ WhatsApp Floating Button */}
-     
-<a
-  href="https://wa.me/998999591117"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="fixed bottom-6 right-6 z-50 group"
->
-  <div className="relative flex items-center justify-center 
-                  w-16 h-16 rounded-full 
-                  bg-green-500 text-white 
-                  shadow-[0_15px_40px_rgba(0,0,0,0.25)]
-                  transition-all duration-300
-                  group-hover:scale-110
-                  group-hover:shadow-[0_20px_60px_rgba(37,211,102,0.6)]">
-
-    <FaWhatsapp size={28} />
-
-    {/* Pulse Ring */}
-    <span className="absolute inset-0 rounded-full 
-                     bg-green-400 opacity-40 
-                     animate-ping"></span>
-  </div>
-</a>
-
+      <a
+        href="https://wa.me/998999591117"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 group"
+      >
+        <div className="relative flex items-center justify-center
+                        w-14 h-14 rounded-full
+                        bg-green-500 text-white
+                        shadow-[0_8px_32px_rgba(34,197,94,0.4)]
+                        transition-all duration-300
+                        group-hover:scale-110
+                        group-hover:shadow-[0_12px_40px_rgba(34,197,94,0.6)]">
+          <FaWhatsapp size={26} />
+          <span className="absolute inset-0 rounded-full bg-green-400 opacity-30 animate-ping"></span>
+        </div>
+      </a>
     </BrowserRouter>
   )
 }
